@@ -19,7 +19,7 @@ public class HttpUtil {
             @Override
             public void run() {
                 HttpURLConnection connection = null;
-
+                Log.i("address", address);
                 URL url = null;
                 try {
                     url = new URL(address);
@@ -41,9 +41,11 @@ public class HttpUtil {
                         listener.onFinish(response.toString());
                     }
 
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                }  catch (Exception e) {
+                    if (listener != null) {
+                        //回调onError()方法
+                        listener.onError(e);
+                    }
                     e.printStackTrace();
                 } finally {
                     if (connection != null){
