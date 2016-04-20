@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.smartfly.coolweather.R;
+import com.smartfly.coolweather.service.AutoUpdateService;
 import com.smartfly.coolweather.util.HttpCallbackListener;
 import com.smartfly.coolweather.util.HttpUtil;
 import com.smartfly.coolweather.util.Utility;
@@ -180,7 +181,9 @@ public class WeatherActivity extends Activity implements View.OnClickListener {
         currentDateText.setText(prefs.getString("current_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
-
+        //激活AutoUpdateService服务
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
 
